@@ -10,13 +10,13 @@ type Class struct {
 	Mod string
 }
 
-// Classdatabase is a class database.
-type ClassDB struct {
+// ClassTable is a class database.
+type ClassTable struct {
 	Data []Class
 }
 
 // Insert adds a new row to the class database.
-func (db *ClassDB) Insert(year int, mod string) Class {
+func (db *ClassTable) Insert(year int, mod string) Class {
 	c := Class{
 		ID:   len(db.Data) + 1,
 		Year: year,
@@ -29,7 +29,7 @@ func (db *ClassDB) Insert(year int, mod string) Class {
 // MustFind returns a class by a given year and a modifier from the class
 // database.
 // The class must be present in the database. Otherwise, the program panics.
-func (db *ClassDB) MustFind(year int, mod string) Class {
+func (db *ClassTable) MustFind(year int, mod string) Class {
 	for _, c := range db.Data {
 		if c.Year == year && c.Mod == mod {
 			return c

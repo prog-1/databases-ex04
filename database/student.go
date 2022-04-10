@@ -6,13 +6,13 @@ type Student struct {
 	Name string
 }
 
-// StudentDB is a class database.
-type StudentDB struct {
+// StudentTable is a class database.
+type StudentTable struct {
 	Data []Student
 }
 
 // Insert adds a new row to the student database.
-func (db *StudentDB) Insert(name string) Student {
+func (db *StudentTable) Insert(name string) Student {
 	s := Student{
 		ID:   len(db.Data) + 1,
 		Name: name,

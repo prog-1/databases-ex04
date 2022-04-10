@@ -5,13 +5,13 @@ type Group struct {
 	ClassID, StudentID int
 }
 
-// GroupDB is a group database.
-type GroupDB struct {
+// GroupTable is a group database.
+type GroupTable struct {
 	Data []Group
 }
 
 // Insert inserts a new mapping to the group database.
-func (db *GroupDB) Insert(cID, sID int) Group {
+func (db *GroupTable) Insert(cID, sID int) Group {
 	g := Group{
 		ClassID:   cID,
 		StudentID: sID,
@@ -21,7 +21,7 @@ func (db *GroupDB) Insert(cID, sID int) Group {
 }
 
 // AddStudentsToClass associates student(s) with a class.
-func (db *GroupDB) AddStudentsToClass(c Class, s ...Student) {
+func (db *GroupTable) AddStudentsToClass(c Class, s ...Student) {
 	for _, st := range s {
 		db.Insert(c.ID, st.ID)
 	}

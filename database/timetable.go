@@ -10,13 +10,13 @@ type Timetable struct {
 	LessonID int
 }
 
-// TimetableDB is a timetable database.
-type TimetableDB struct {
+// TimetableTable is a timetable database.
+type TimetableTable struct {
 	Data []Timetable
 }
 
 // Insert adds a new row to the timetable database.
-func (db *TimetableDB) Insert(cID int, day time.Weekday, lID int) Timetable {
+func (db *TimetableTable) Insert(cID int, day time.Weekday, lID int) Timetable {
 	tt := Timetable{
 		ID:       len(db.Data) + 1,
 		ClassID:  cID,
@@ -28,7 +28,7 @@ func (db *TimetableDB) Insert(cID int, day time.Weekday, lID int) Timetable {
 }
 
 // AddTimetable adds rows for several lessons to the timetable.
-func (db *TimetableDB) AddTimetable(c Class, day time.Weekday, l ...Lesson) {
+func (db *TimetableTable) AddTimetable(c Class, day time.Weekday, l ...Lesson) {
 	for _, le := range l {
 		db.Insert(c.ID, day, le.ID)
 	}

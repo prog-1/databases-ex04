@@ -7,11 +7,11 @@ import (
 )
 
 type tables struct {
-	students  database.StudentDB
-	classes   database.ClassDB
-	groups    database.GroupDB
-	lessons   database.LessonDB
-	timetable database.TimetableDB
+	students  database.StudentTable
+	classes   database.ClassTable
+	groups    database.GroupTable
+	lessons   database.LessonTable
+	timetable database.TimetableTable
 }
 
 func main() {

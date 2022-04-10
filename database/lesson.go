@@ -6,13 +6,13 @@ type Lesson struct {
 	Name string
 }
 
-// LessonDB is a class database.
-type LessonDB struct {
+// LessonTable is a class database.
+type LessonTable struct {
 	Data []Lesson
 }
 
 // Insert adds a new row to the lesson database.
-func (db *LessonDB) Insert(name string) Lesson {
+func (db *LessonTable) Insert(name string) Lesson {
 	l := Lesson{
 		ID:   len(db.Data) + 1,
 		Name: name,
