@@ -65,7 +65,7 @@ func main() {
 		fmt.Println(" ", l.Name)
 	}
 
-	fmt.Println("Pavel has:")
+	fmt.Println("Pavels has:")
 	for d, lessons := range studentWeekTimetable(db, "Pavels") {
 		fmt.Println(" *", d)
 		for _, l := range lessons {
