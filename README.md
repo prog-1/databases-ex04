@@ -51,3 +51,17 @@ A [relational database](https://en.wikipedia.org/wiki/Relational_database) is a 
    (1, 3, "Monday", 5)
    (2, 3, "Monday", 7)
    ```
+   
+## Exercises
+
+1. Implement a function `func studentCountPerClass(db tables) map[string]int` that returns the number of students in every class. The returned value is a map "class -> count", e.g. `map[string]int{"10b": 2}`.
+
+2. Implement a function func `studentCountPerYear(db tables) map[int]int` that returns the number of students for every year. The returned value is a map "year -> count", e.g. `map[int]int{10: 2}`.
+
+3. Implement a function `func lessonsPerYear(db tables, year int) []string` that returns a slice of unique subjects that students learn for a given year, e.g. `[]string{"Math", "Sport", "Programming"}`.
+
+4. Create a new table `Exams` in the database with the following columns: `ID` of type `int`, `StudentID` of type `int`, `LessonID` of type `int`, `Grade` of type `int`.
+
+   1. Write a function `func examsPerClass(year int, mod string) []string` that returns a list of exams for a given class and modifier.
+
+   2. Write a function `func averageGradeForStudents(name string) float64` that returns an average grade for a given student.
