@@ -45,7 +45,7 @@ created in:
 The exercises are exactly the same as in [databases-ex01], but must be
 implemented using SQL.
 
-[database-ex01]: https://github.com/prog-1/databases-ex01
+[databases-ex01]: https://github.com/prog-1/databases-ex01
 
 1. Implement a function `func studentCountPerClass(db tables) map[string]int`
    that returns the number of students in every class. The returned value is a map
