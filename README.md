@@ -1,67 +1,62 @@
-# Relational Databases
+# SQL & Go
 
-## Definition
+## Using sqlite from Go
 
-A [relational database](https://en.wikipedia.org/wiki/Relational_database) is a digital database, where data is organizes into one or more [tables](https://en.wikipedia.org/wiki/Table_(database)) (or "relations") of [columns](https://en.wikipedia.org/wiki/Column_(database)) and [rows](https://en.wikipedia.org/wiki/Row_(database)), with a unique [key](https://en.wikipedia.org/wiki/Relational_database#Keys) identifying each row.
+There is an existing standard library [database/sql] that provides an interface
+around SQL (or SQL-like) databases.
 
-## Database Example
+However, this library is overly verbose to use, and it does not allow to select
+into structures and slices, which is quite convenient to use. Because of that
+we will use [jmoiron/sqlx] instead.
 
-1. Table `Students`. Columns: `ID`, `Name`.
+> NOTE: [jmoiron/sqlx] is an optional library, and you could use standard
+  [database/sql] to complete your home assignments.
 
-   Row examples:
+Using generic SQL libraries require [drivers] that are implement for specific
+SQL service or library. A driver is usually imported for its side-effects, which
+is registering the driver name. To ensure Go does not remove unused import, you
+have to set its name to '_' e.g.
 
-   ```
-   (1, "Jaroslavs")
-   (2, "Pavels")
-   ```
+```golang
+import _ "modernc.org/sqlite"
+```
 
-2. Table `Class`. Columns: `ID`, `Year`, `Modifier`.
+There are multiple sqlite [drivers] available for Go, but we will be using
+[modernc.org/sqlite](https://modernc.org/sqlite) since it features a pure Go
+implementation that does not require C compiler. And this makes it easier to
+use for our purpose.
 
-   Row examples:
+You can find an example of a small program that creates the `test` table,
+inserts some data and fetches it at [yarcat/playground/modernc-sqlite].
 
-   ```
-   (2, 10, "a")
-   (3, 10, "b")
-   ```
+[drivers]: https://github.com/golang/go/wiki/SQLDrivers
+[database/sql]: https://pkg.go.dev/database/sql
+[yarcat/playground/modernc-sqlite]: https://github.com/yarcat/playground/tree/master/modernc-sqlite
+[jmoiron/sqlx]: https://jmoiron.github.io/sqlx/
 
-3. Table: `Groups`. Columns: `Class ID`, `Student ID`.
-
-   Row examples:
-
-   ```
-   (3, 1)
-   (3, 2)
-   ```
-
-4. Table: `Lessons`. Columns: `ID`, `Name`.
-
-   Row examples:
-
-   ```
-   (5, "Math")
-   (10, "Sport")
-   (7, "Programming")
-   ```
-
-5. Table `Timetable`. Columns: `ID`, `Class ID`, `Day`, `Lesson ID`.
-
-   Row example:
-
-   ```
-   (1, 3, "Monday", 5)
-   (2, 3, "Monday", 7)
-   ```
-   
 ## Exercises
 
-1. Implement a function `func studentCountPerClass(db tables) map[string]int` that returns the number of students in every class. The returned value is a map "class -> count", e.g. `map[string]int{"10b": 2}`.
+To implement the exercises you will need to use the same database and tables as
+created in:
 
-2. Implement a function func `studentCountPerYear(db tables) map[int]int` that returns the number of students for every year. The returned value is a map "year -> count", e.g. `map[int]int{10: 2}`.
+- https://github.com/prog-1/databases-ex02 (for students, classes, etc)
+- https://github.com/prog-1/databases-ex03 (for exams)
 
-3. Implement a function `func lessonsPerYear(db tables, year int) []string` that returns a slice of unique subjects that students learn for a given year, e.g. `[]string{"Math", "Sport", "Programming"}`.
+The exercises are exactly the same as in [databases-ex01], but must be
+implemented using SQL.
 
-4. Create a new table `Exams` in the database with the following columns: `ID` of type `int`, `StudentID` of type `int`, `LessonID` of type `int`, `Grade` of type `int`.
+[database-ex01]: https://github.com/prog-1/databases-ex01
 
-   1. Write a function `func examsPerClass(db tables, year int, mod string) []string` that returns a list of exams for a given class and modifier.
-
-   2. Write a function `func averageGradeForStudents(db tables, name string) float64` that returns an average grade for a given student.
+1. Implement a function `func studentCountPerClass(db tables) map[string]int`
+   that returns the number of students in every class. The returned value is a map
+   "class -> count", e.g. `map[string]int{"10b": 2}`.
+2. Implement a function func `studentCountPerYear(db tables) map[int]int` that
+   returns the number of students for every year. The returned value is a map
+   "year -> count", e.g. `map[int]int{10: 2}`.
+3. Implement a function `func lessonsPerYear(db tables, year int) []string` that
+   returns a slice of unique subjects that students learn for a given year, e.g.
+   `[]string{"Math", "Sport", "Programming"}`.
+4. Write a function `func examsPerClass(db tables, year int, mod string) []string`
+   that returns a list of exams for a given class and modifier.
+5. Write a function `func averageGradeForStudents(db tables, name string) float64`
+   that returns an average grade for a given student.
