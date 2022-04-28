@@ -13,7 +13,7 @@ we will use [jmoiron/sqlx] instead.
   [database/sql] to complete your home assignments.
 
 Using generic SQL libraries require [drivers] that are implement for specific
-SQL service or library. A driver is usually imported for its side-effects, which
+SQL services or librarioes. A driver is usually imported for its side-effects, which
 is registering the driver name. To ensure Go does not remove unused import, you
 have to set its name to '_' e.g.
 
