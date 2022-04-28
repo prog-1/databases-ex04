@@ -47,16 +47,18 @@ implemented using SQL.
 
 [databases-ex01]: https://github.com/prog-1/databases-ex01
 
-1. Implement a function `func studentCountPerClass(db tables) map[string]int`
+> NOTE: The functions will accept `*sql.DB` if you use `sql` instead of `sqlx`.
+
+1. Implement a function `func studentCountPerClass(db *sqlx.DB) map[string]int`
    that returns the number of students in every class. The returned value is a map
    "class -> count", e.g. `map[string]int{"10b": 2}`.
-2. Implement a function func `studentCountPerYear(db tables) map[int]int` that
+2. Implement a function func `studentCountPerYear(db *sqlx.DB) map[int]int` that
    returns the number of students for every year. The returned value is a map
    "year -> count", e.g. `map[int]int{10: 2}`.
-3. Implement a function `func lessonsPerYear(db tables, year int) []string` that
+3. Implement a function `func lessonsPerYear(db *sqlx.DB, year int) []string` that
    returns a slice of unique subjects that students learn for a given year, e.g.
    `[]string{"Math", "Sport", "Programming"}`.
-4. Write a function `func examsPerClass(db tables, year int, mod string) []string`
+4. Write a function `func examsPerClass(db *sqlx.DB, year int, mod string) []string`
    that returns a list of exams for a given class and modifier.
-5. Write a function `func averageGradeForStudents(db tables, name string) float64`
+5. Write a function `func averageGradeForStudents(db *sqlx.DB, name string) float64`
    that returns an average grade for a given student.
