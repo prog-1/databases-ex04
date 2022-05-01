@@ -61,4 +61,5 @@ implemented using SQL.
 4. Write a function `func examsPerClass(db *sqlx.DB, year int, mod string) []string`
    that returns a list of exams for a given class and modifier.
 5. Write a function `func averageGradeForStudents(db *sqlx.DB, firstName, lastName string) float64`
-   that returns an average grade for a given student.
+   that returns an average grade for a given student. If `firstName`, `lastName` tuple is not unique
+   in the DB, then return *any* average.
